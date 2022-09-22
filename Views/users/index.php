@@ -8,16 +8,16 @@ $db = new Database();
 $table_name = "User Accounts";
 
 
-$filter_department = null;
-if (isset($_GET["selected_department"])) {
-  $filter_department = $_GET["selected_department"];
+$filter_designation = null;
+if (isset($_GET["selected_designation"])) {
+  $filter_designation = $_GET["selected_designation"];
 }
 ?>
 
 <?php require_once "../../Templates/sidebar.php"; ?>
 <?php require_once("./users-add.php"); ?>
-<?php //require_once("./users-edit.php"); ?>
-<?php //require_once("./users-delete.php"); ?>
+<?php require_once("./users-edit.php"); ?>
+<?php require_once("./users-delete.php"); ?>
 
 
 <div class="main-content w-100">
@@ -92,8 +92,8 @@ FROM
 `user_type`
 WHERE
 users.designation_id = user_designation.id AND users.user_type_id = user_type.id";
-if ($filter_department && $filter_department != "All Department") {
-    $select_user_query = $select_user_query . " user_designation.designation_name='{$filter_department}'";
+if ($filter_designation && $filter_designation != "All Designation") {
+  $select_user_query = $select_user_query . " AND user_designation.designation_name='{$filter_designation}';";
 }
 $db->query($select_user_query);
 $db->execute();
@@ -132,7 +132,7 @@ $accounts = [
     $(mainDataTableId).on('click', 'td.editor-edit', function(e) {
       var rowObject = JSON. parse($(this).attr("rowdata"));
       $("#user-id").val(rowObject['id']);
-      $("#designation_id").val(rowObject['designation_id']);
+      $("#designation-id").val(rowObject['designation_id']);
       $("#user-type-id").val(rowObject['user_type_id']);
       $("#first-name").val(rowObject['first_name']);
       $("#middle-name").val(rowObject['middle_name']);

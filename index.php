@@ -9,8 +9,8 @@ if (isset($_POST["signIn"])) {
 
     $db->query("SELECT
     `users`.`id`,
-    `users`.`department_id`,
-    `user_department`.`department_name`,
+    `users`.`designation_id`,
+    `user_designation`.`designation_name`,
     `users`.`user_type_id`,
     `user_type`.`type_name`,
     `users`.`date_activated`,
@@ -23,12 +23,12 @@ if (isset($_POST["signIn"])) {
     `users`.`gender`,
     `users`.`email`,
     `users`.`contact_no`
-FROM
+    FROM
     `users`,
-    `user_department`,
+    `user_designation`,
     `user_type`
-WHERE
-    users.department_id = user_department.id AND users.user_type_id = user_type.id AND users.id = '{$id}';");
+    WHERE
+    users.designation_id = user_designation.id AND users.user_type_id = user_type.id AND users.id = '{$id}';");
 
     $db->execute();
     $logged_in_user = $db->fetch();
@@ -40,7 +40,7 @@ WHERE
         $_SESSION['logged_in_user_type'] = $logged_in_user["type_name"];
         $_SESSION['logged_in_password'] = $logged_in_user["password"];
         $_SESSION['logged_in_date_activated'] = $logged_in_user["date_activated"];
-        $_SESSION['logged_in_user_department'] = $logged_in_user["department"];
+        $_SESSION['logged_in_user_designation'] = $logged_in_user["designation_name"];
 
         if (!empty($_POST["id"]) && empty($_POST["password"]) && empty($logged_in_user["password"])) {
             redirect("./Views/profile/password-reset.php");

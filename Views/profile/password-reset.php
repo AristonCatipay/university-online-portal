@@ -36,7 +36,7 @@ if (isset($_POST["sign_in"])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WSAP Database | Login</title>
+  <title>University Online Portal | Reset Password</title>
   <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style-with-prefix.css">
 
@@ -51,7 +51,7 @@ if (isset($_POST["sign_in"])) {
 <body class="">
   <div class="login-form rounded shadow-lg p-4">
     <div class="text-center">
-      <img src="../../Assets/img/backgrounds/mobile-app.svg"  height="220">
+      <img src="../../Assets/img/logo/logo(500x500).png"  height="220">
       <div class="p-1 pb-0">
         <h4 class="title">You are logged in. Set your Password</h4>
       </div>

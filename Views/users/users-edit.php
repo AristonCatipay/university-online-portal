@@ -7,7 +7,7 @@ $db = new Database();
 if (isset($_POST["editUserData"])) {
   // $ = $_POST[""];
   $user_id = $_POST["user-id"];
-  $department = $_POST["department"];
+  $designation_id = $_POST["designation-id"];
   $user_type_id = $_POST["user-type-id"];
   $first_name = $_POST["first-name"];
   $middle_name = $_POST["middle-name"];
@@ -18,7 +18,7 @@ if (isset($_POST["editUserData"])) {
   $email = $_POST["email"];
  
   if ($user_id){
-  $db->query("UPDATE `users` SET `department_id`='{$department}',`user_type_id`='{$user_type_id}',`first_name`='{$first_name}',`middle_name`='{$middle_name}',`last_name`='{$last_name}',`birthday`='{$birthday}',`gender`='{$gender}',`email`='{$email}',`contact_no`='{$contact_no}' WHERE id = '$user_id';");
+  $db->query("UPDATE `users` SET `designation_id`='{$designation_id}',`user_type_id`='{$user_type_id}',`first_name`='{$first_name}',`middle_name`='{$middle_name}',`last_name`='{$last_name}',`birthday`='{$birthday}',`gender`='{$gender}',`email`='{$email}',`contact_no`='{$contact_no}' WHERE id = '$user_id';");
   $db->execute();
   $db->closeStmt();
   $_SESSION["success"] = "Data has been updated successfully.";
@@ -128,13 +128,13 @@ if (isset($_POST["editUserData"])) {
                     <!-- row closing -->
 
                     <div class="row mt-2">
-                        <label for="status">Department</label><br />
+                        <label for="designation-id">Designation</label><br />
                         <div class="input-group">
-                            <select name="department" id="department-id" class="form-select">
+                            <select name="designation-id" id="designation-id" class="form-select">
                                 <option value="" selected="true" disabled="disabled"></option>
                                 <?php
-                  $db->query("SELECT `id`,`department_name` FROM user_department;"); $db->execute(); $status_query = $db->resultSet(); $db->closeStmt(); foreach ($status_query as $row) { ?>
-                                <option value="<?= $row->id?>"><?= $row->department_name?></option>
+                  $db->query("SELECT `id`,`designation_name` FROM user_designation;"); $db->execute(); $status_query = $db->resultSet(); $db->closeStmt(); foreach ($status_query as $row) { ?>
+                                <option value="<?= $row->id?>"><?= $row->designation_name?></option>
                                 <?php
                   };
                   ?>

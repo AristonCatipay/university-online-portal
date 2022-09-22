@@ -8,16 +8,16 @@ $db = new Database();
 require_once("./users-add.php");
 
 $table_name = "User Accounts";
-$filter_department = null;
-if (isset($_GET["selected_department"])) {
-  $filter_department = $_GET["selected_department"];
+$filter_designation = null;
+if (isset($_GET["selected_designation"])) {
+  $filter_designation = $_GET["selected_designation"];
 }
 
 $active_accounts_query = "SELECT
 `users`.`id`,
-`users`.`department_id`,
-`user_department`.`department_name`,
-`users`.`user_type_id`, 
+`users`.`designation_id`,
+`user_designation`.`designation_name`,
+`users`.`user_type_id`,
 `user_type`.`type_name`,
 `users`.`date_activated`,
 `users`.`password`,
@@ -31,12 +31,12 @@ $active_accounts_query = "SELECT
 `users`.`contact_no`
 FROM
 `users`,
-`user_department`,
+`user_designation`,
 `user_type`
 WHERE
-users.department_id = user_department.id AND users.user_type_id = user_type.id AND users.date_activated IS NOT NULL"; 
-if ($filter_department && $filter_department != "All Department") {
-  $active_accounts_query = $active_accounts_query . " AND user_department.department_name='{$filter_department}'";
+users.designation_id = user_designation.id AND users.user_type_id = user_type.id AND users.date_activated IS NOT NULL"; 
+if ($filter_designation && $filter_designation != "All Designation") {
+  $active_accounts_query = $active_accounts_query ." AND user_designation.designation_name='{$filter_designation}'";
 }
 $db->query($active_accounts_query);
 $db->execute();
@@ -45,9 +45,9 @@ $db->closeStmt();
 
 $unctivated_accounts_query = "SELECT
 `users`.`id`,
-`users`.`department_id`,
-`user_department`.`department_name`,
-`users`.`user_type_id`, 
+`users`.`designation_id`,
+`user_designation`.`designation_name`,
+`users`.`user_type_id`,
 `user_type`.`type_name`,
 `users`.`date_activated`,
 `users`.`password`,
@@ -61,12 +61,12 @@ $unctivated_accounts_query = "SELECT
 `users`.`contact_no`
 FROM
 `users`,
-`user_department`,
+`user_designation`,
 `user_type`
 WHERE
-users.department_id = user_department.id AND users.user_type_id = user_type.id AND users.date_activated IS NULL";
-if ($filter_department && $filter_department != "All Department") {
-  $unctivated_accounts_query = $unctivated_accounts_query . " AND user_department.department_name='{$filter_department}'";
+users.designation_id = user_designation.id AND users.user_type_id = user_type.id AND users.date_activated IS NULL";
+if ($filter_designation && $filter_designation != "All Designation") {
+  $unctivated_accounts_query = $unctivated_accounts_query . " AND user_designation.designation_name='{$filter_designation}'";
 }
 $db->query($unctivated_accounts_query);
 $db->execute();
@@ -133,7 +133,7 @@ $unactivated_accounts_copy_text = "";
                 <h6 class="card-title text-center"><?= $acc_full_name ?></h6>
                 <h6 class="card-title text-center"><?= "{$account->id}" ?></h6>
                 <span class="badge bg-success w-max mx-auto text-capitalize"><?= "{$account->type_name}"?></span>
-                <span class="badge bg-secondary w-max mx-auto text-capitalize"><?= "{$account->department_name}"?></span>
+                <span class="badge bg-secondary w-max mx-auto text-capitalize"><?= "{$account->designation_name}"?></span>
               </div>
             </div>
           </div>
@@ -159,7 +159,7 @@ $unactivated_accounts_copy_text = "";
                 <h6 class="card-title text-center"><?= $acc_full_name ?></h6>
                 <h6 class="card-title text-center"><?= "{$account->id}" ?></h6>
                 <span class="badge bg-success w-max mx-auto text-capitalize"><?= "{$account->type_name}"?></span>
-                <span class="badge bg-secondary w-max mx-auto text-capitalize"><?= "{$account->department_name}"?></span>
+                <span class="badge bg-secondary w-max mx-auto text-capitalize"><?= "{$account->designation_name}"?></span>
               </div>
             </div>
           </div>

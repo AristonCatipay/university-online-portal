@@ -116,8 +116,6 @@ if (isset($_POST["set_up_account"])) {
 	</div>
 </section>
 
-<?php require_once("./add.php"); ?>
-<?php require_once("./delete.php"); ?>
 
 <div>
 </div>
