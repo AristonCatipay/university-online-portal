@@ -318,10 +318,10 @@
     }
 
 
-    function allow_specific_brand_only($allowed_brand = []){
+    function allow_specific_designation_only($allowed_designation = []){
         allow_all_fully_authenticated();
-        for ($i=0; $i < sizeof($allowed_brand); $i++) { 
-            if($_SESSION['logged_in_user_brand'] === $allowed_brand[$i])return;
+        for ($i=0; $i < sizeof($allowed_designation); $i++) { 
+            if($_SESSION['logged_in_user_designation'] === $allowed_designation[$i])return;
         }
         unset_logged_in_session();
     }
