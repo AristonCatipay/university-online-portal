@@ -39,7 +39,7 @@
     <script src="https://kit.fontawesome.com/94234d0427.js" crossorigin="anonymous"></script>
     <?php
         function setTitle($title) {
-            echo "<title> Project Name | ".$title."</title>";
+            echo "<title> University Online Portal | ".$title."</title>";
         }
     ?>
     <link rel="icon" href="../../Assets/img/logo/logo(500x500)withoutbg.png">

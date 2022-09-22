@@ -74,7 +74,7 @@ WHERE
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Name | Login</title>
+    <title> University Online Portal | Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="./Assets/img/logo/logo(500x500)withoutbg.png">
 
