@@ -16,8 +16,8 @@ if (isset($_GET["selected_department"])) {
 
 <?php require_once "../../Templates/sidebar.php"; ?>
 <?php require_once("./users-add.php"); ?>
-<?php require_once("./users-edit.php"); ?>
-<?php require_once("./users-delete.php"); ?>
+<?php //require_once("./users-edit.php"); ?>
+<?php //require_once("./users-delete.php"); ?>
 
 
 <div class="main-content w-100">
@@ -103,7 +103,7 @@ $accounts = [
     "columns" => json_encode([
         "id" => "ID",
         "type_name" => "Type",
-        "department_name" => "Department",
+        "designation_name" => "Designation",
         "first_name" => "First name",
         "middle_name" => "Middle name",
         "last_name" => "Last name",
@@ -111,7 +111,7 @@ $accounts = [
         "birthday" => "Birthday",
         "contact_no" => "Contact No",
         "email" => "Email",
-        "department_id" => "",
+        "designation_id" => "",
         "user_type_id" => "",
     ]),
 ];
@@ -132,7 +132,7 @@ $accounts = [
     $(mainDataTableId).on('click', 'td.editor-edit', function(e) {
       var rowObject = JSON. parse($(this).attr("rowdata"));
       $("#user-id").val(rowObject['id']);
-      $("#department-id").val(rowObject['department_id']);
+      $("#designation_id").val(rowObject['designation_id']);
       $("#user-type-id").val(rowObject['user_type_id']);
       $("#first-name").val(rowObject['first_name']);
       $("#middle-name").val(rowObject['middle_name']);

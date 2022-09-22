@@ -11,7 +11,7 @@ if (isset($_POST["add-user"])) {
     $middle_name = $_POST["add-middle-name"];
     $last_name = $_POST["add-last-name"];
     $gender = $_POST["add-gender"];
-    $department = $_POST["add-department"];
+    $designation = $_POST["add-designation"];
     $add_user_type = $_POST["add-user-type-id"];
 
     do {
@@ -21,7 +21,7 @@ if (isset($_POST["add-user"])) {
         $db->closeStmt();
     } while ($db->rowCount() != 0);
 
-    $db->query("INSERT INTO `users`(`id`,`department_id`, `user_type_id`, `date_activated`,`first_name`, `middle_name`, `last_name`, `birthday`, `gender`, `email`, `contact_no`) VALUES ('{$user_id}','{$department}','{$add_user_type}',NULL,
+    $db->query("INSERT INTO `users`(`id`,`designation_id`, `user_type_id`, `date_activated`,`first_name`, `middle_name`, `last_name`, `birthday`, `gender`, `email`, `contact_no`) VALUES ('{$user_id}','{$designation}','{$add_user_type}',NULL,
   '{$first_name}','{$middle_name}','{$last_name}',NULL,'{$gender}',NULL,NULL);");
     $db->execute();
     $db->closeStmt();
@@ -91,17 +91,17 @@ if (isset($_POST["add-user"])) {
                     <!-- row closing -->
 
                     <div class="row mt-2">
-                        <label for="add-department">Department</label><br />
+                        <label for="add-designation">Designation</label><br />
                         <div class="input-group">
-                            <select name="add-department" class="form-select" required>
+                            <select name="add-designation" class="form-select" required>
                                 <option value="" selected="true" disabled="disabled"></option>
                                 <?php
-                                $db->query("SELECT `id`,`department_name` FROM user_department;");
+                                $db->query("SELECT `id`,`designation_name` FROM user_designation;");
                                 $db->execute();
                                 $status_query = $db->resultSet();
                                 $db->closeStmt();
                                 foreach ($status_query as $row) { ?>
-                                <option value="<?= $row->id ?>"><?= $row->department_name ?></option>
+                                <option value="<?= $row->id ?>"><?= $row->designation_name?></option>
                                 <?php }
                                 ?>
                             </select>
