@@ -8,8 +8,8 @@ require_once "../../Controllers/Database.php";
 $db = new Database();
 $db->query("SELECT
 `users`.`id`,
-`users`.`department_id`,
-`user_department`.`department_name`,
+`users`.`designation_id`,
+`user_designation`.`designation_name`,
 `users`.`user_type_id`,
 `user_type`.`type_name`,
 `users`.`date_activated`,
@@ -24,10 +24,10 @@ $db->query("SELECT
 `users`.`contact_no`
 FROM
 `users`,
-`user_department`,
+`user_designation`,
 `user_type`
 WHERE
-users.department_id = user_department.id AND users.user_type_id = user_type.id AND users.id = '{$_SESSION["logged_in_id"]}';");
+users.designation_id = user_designation.id AND users.user_type_id = user_type.id AND users.id = '{$_SESSION["logged_in_id"]}';");
 $db->execute();
 $user = $db->fetch();
 $db->closeStmt();
@@ -67,8 +67,8 @@ allow_all_fully_authenticated();
             <span class="fw-bold text-secondary">Profile Image</span>
             <img src="../../Assets/img/profiles/<?= $user["profile_file_name"] ?>" width="120"  height="120" class="rounded-circle mx-auto">
             <div class="d-flex flex-column gap-1">
-              <span class="badge bg-secondary w-max mx-auto text-capitalize"><?= $user["type_name"] ?> User</span>
-              <span class="badge bg-success w-max mx-auto text-capitalize"><?= $user["department_name"] ?> Department</span>
+              <span class="badge bg-secondary w-max mx-auto text-capitalize"><?= $user["type_name"] ?></span>
+              <span class="badge bg-success w-max mx-auto text-capitalize"><?= $user["designation_name"] ?></span>
             </div>
           </div>
           <div class="text-center col-12 col-lg-9">

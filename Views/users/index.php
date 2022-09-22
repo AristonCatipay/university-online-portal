@@ -72,8 +72,8 @@ if (isset($_GET["selected_department"])) {
 <?php
 $select_user_query = "SELECT
 `users`.`id`,
-`users`.`department_id`,
-`user_department`.`department_name`,
+`users`.`designation_id`,
+`user_designation`.`designation_name`,
 `users`.`user_type_id`,
 `user_type`.`type_name`,
 `users`.`date_activated`,
@@ -88,12 +88,12 @@ $select_user_query = "SELECT
 `users`.`contact_no`
 FROM
 `users`,
-`user_department`,
+`user_designation`,
 `user_type`
 WHERE
-users.department_id = user_department.id AND users.user_type_id = user_type.id";
+users.designation_id = user_designation.id AND users.user_type_id = user_type.id";
 if ($filter_department && $filter_department != "All Department") {
-    $select_user_query = $select_user_query . " AND user_department.department_name='{$filter_department}'";
+    $select_user_query = $select_user_query . " user_designation.designation_name='{$filter_department}'";
 }
 $db->query($select_user_query);
 $db->execute();
