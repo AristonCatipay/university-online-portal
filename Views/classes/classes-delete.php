@@ -5,14 +5,13 @@ require_once "../../Controllers/Database.php";
 $db = new Database();
 
   if(isset($_POST["deleteRow"])){
-    // $db->query("SELECT FROM WHERE id='{$_POST['']}';");
-    // $db->execute();
-    // $db->closeStmt();
-    // $result = $db->resultSet();
-    // $column_name = $result[0]->column_name;
+    $db->query("DELETE FROM `classes` WHERE id='{$_POST['id']}';");
+    $db->execute();
+    $db->closeStmt();
+    $result = $db->resultSet();
     
     // $_SESSION["failed"] = "Unsuccessful data deletion.";
-    // $_SESSION["success"] = "Data has been removed successfully.";
+    $_SESSION["success"] = "Data has been removed successfully.";
   }
 ?>
 
@@ -28,7 +27,7 @@ $db = new Database();
       </div>
 
       <form action="./index.php" method="POST">
-      <input type="hidden" name="id" id="delete-id">
+      <input type="text" name="id" id="delete-id">
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" name="deleteRow" class="btn btn-danger">Delete</button>

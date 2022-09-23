@@ -8,8 +8,6 @@ $db = new Database();
     // $db->query("SELECT FROM WHERE id='{$_POST['']}';");
     // $db->execute();
     // $db->closeStmt();
-    // $result = $db->resultSet();
-    // $column_name = $result[0]->column_name;
     
     // $_SESSION["failed"] = "Unsuccessful data deletion.";
     // $_SESSION["success"] = "Data has been removed successfully.";

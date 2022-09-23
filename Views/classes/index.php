@@ -20,9 +20,9 @@ allow_specific_designation_only(["TEACHER", "DEVELOPER"]);
 
 <!-- Add required files here. -->
 <?php require_once "../../Templates/sidebar.php"; ?>
-<?php //require_once("./ -add.php"); ?>
-<?php //require_once("./ -edit.php"); ?>
-<?php //require_once("./ -delete.php"); ?>
+<?php require_once("./classes-add.php"); ?>
+<?php require_once("./classes-edit.php"); ?>
+<?php require_once("./classes-delete.php"); ?>
 <!-- End of required files here. -->
 
 
@@ -150,6 +150,9 @@ $table_data = [
       // dedicated input tags in the edit form of this page.
       // Example: $("#edit-id").val(rowObject['id']);
       // $("#").val(rowObject['']);
+      $("#edit-class-code").val(rowObject['class_code']);
+      $("#edit-class-name").val(rowObject['class_name']);
+      $("#edit-section-id").val(rowObject['section_id']);
     });
 
     // Delete record
@@ -159,6 +162,7 @@ $table_data = [
       // dedicated input tags in the edit form of this page.
       // Example: $("#delete-id").val(id);
       // $("#").val(rowObject['']);
+      $("#delete-id").val(id);
     });
 
     console.log(columns);
@@ -174,7 +178,7 @@ $table_data = [
         var textData = $(this).text().trim();
         rowObject[columnArr[i]] = textData;
         // if(i == [number of columns])
-        if(i == 0){
+        if(i == 8){
           $(this).attr("rowdata",JSON.stringify(rowObject));
         }
         i++;

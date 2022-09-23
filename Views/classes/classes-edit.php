@@ -7,12 +7,22 @@ $db = new Database();
 
 if (isset($_POST["edit"])) {
   // $ = $_POST[""];
+  $edit_class_code = $_POST["edit-class-code"];
+  $edit_class_name = $_POST["edit-class-name"];
+  $edit_section_id = $_POST["edit-section-id"];
 
-//   $db->query("");
-//   $db->execute();
-//   $db->closeStmt();
+  $db->query("UPDATE
+  `classes`
+SET
+  `section_id` = '{$edit_section_id}',
+  `class_code` = '{$edit_class_code}',
+  `class_name` = '{$edit_class_name}'
+WHERE
+  1");
+  $db->execute();
+  $db->closeStmt();
 
-//   $_SESSION["success"] = "Data has been updated successfully.";
+  $_SESSION["success"] = "Data has been updated successfully.";
 //   $_SESSION["failed"] = "Data is already in the database.";
 }
 ?>
@@ -39,6 +49,26 @@ if (isset($_POST["edit"])) {
                             </div>
                         </div>
                     </div> -->
+
+                    <div class="row mt-2">
+                        <div class="col">
+                            <label for="edit-class-code">Class Code</label><br />
+                            <div class="input-group">
+                                <input type="text" name="edit-class-code" id="edit-class-code" class="form-control" required />
+                                <span class="input-group-text border"><i class="fas fa-solid fa-address-card"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col">
+                            <label for="edit-class-name">Class Name</label><br />
+                            <div class="input-group">
+                                <input type="text" name="edit-class-name" id="edit-class-name" class="form-control" required />
+                                <span class="input-group-text border"><i class="fas fa-solid fa-address-card"></i></span>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Example of drop down input form -->
                     <!-- <div class="row mt-2">
@@ -73,6 +103,22 @@ if (isset($_POST["edit"])) {
                             <span class="input-group-text"><i class="fas fa-solid fa-building-user"></i></span>
                         </div>
                     </div> -->
+
+                    <div class="row mt-2">
+                        <label for="edit-section-id">Section Name</label><br />
+                        <div class="input-group">
+                            <select name="edit-section-id" id="edit-section-id" class="form-select" required>
+                                <option value="" selected="true" disabled="disabled"></option>
+                                <?php
+                                            $db->query("SELECT `id`,`section_name` FROM `section`;"); $db->execute(); $status_query = $db->resultSet(); $db->closeStmt(); foreach ($status_query as $row) { ?>
+                                <option value="<?= $row->id ?>"><?= $row->section_name ?></option>
+                                <?php 
+                                            };
+                                            ?>
+                            </select>
+                            <span class="input-group-text"><i class="fas fa-solid fa-building-user"></i></span>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- modal-body closing -->

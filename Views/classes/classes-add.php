@@ -7,14 +7,37 @@ require_once "../../Controllers/Date.php";
 $db = new Database();
 $date = new Date();
 
-if (isset($_POST["add-"])) {
+if (isset($_POST["add-classes"])) {
     // Always use POST method if sending data to the form. 
     // $ = $_POST[""];
+    $add_class_code = $_POST["add-class-code"];
+    $add_class_name = $_POST["add-class-name"];
+    $add_section_id = $_POST["add-section-id"]; 
 
-    // $db->query("");  
-    // $db->execute();
-    // $db->closeStmt();
-    // $_SESSION["success"] = "Data has been added successfully.";
+    do {
+        $class_id = $date->getYear() . "-" . randomWord();
+        $db->query("SELECT `id` FROM `classes` WHERE id = '{$class_id}'");
+        $db->execute();
+        $db->closeStmt();
+    } while ($db->rowCount() != 0);
+
+    $db->query("INSERT INTO `classes`(
+        `id`,
+        `user_id`,
+        `section_id`,
+        `class_code`,
+        `class_name`
+    )
+    VALUES(
+        '{$class_id}',
+        '{$_SESSION['logged_in_id']}',
+        '{$add_section_id}',
+        '{$add_class_code}',
+        '{$add_class_name}'
+    );");  
+    $db->execute();
+    $db->closeStmt();
+    $_SESSION["success"] = "Data has been added successfully.";
     // $_SESSION["failed"] = "Data has been added successfully.";
 }
 ?>
@@ -22,65 +45,71 @@ if (isset($_POST["add-"])) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">Add</h5>
+                <h5 class="modal-title" id="addModalLabel">Add Class</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="index.php" method="POST">
+            <form action="./index.php" method="POST">
                 <div class="modal-body">
                     <!-- Don't include id for the input forms unless you will use this for CSS -->
                     <!-- Example of normal input form -->
-                    <!-- <div class="row mt-2">
+                    <div class="row mt-2">
                         <div class="col">
-                            <label for="add-first-name">First Name</label><br />
+                            <label for="add-class-code">Class Code</label><br />
                             <div class="input-group">
-                                <input type="text" name="add-first-name" class="form-control" required/>
+                                <input type="text" name="add-class-code" class="form-control" required />
                                 <span class="input-group-text border"><i class="fas fa-solid fa-address-card"></i></span>
                             </div>
                         </div>
-                    </div> -->
-                    
-                    <!-- Example of drop down input form -->
-                    <!-- <div class="row mt-2">
+                    </div>
+
+                    <div class="row mt-2">
                         <div class="col">
-                            <label for="add-gender">Gender</label><br />
+                            <label for="add-class-name">Class Name</label><br />
                             <div class="input-group">
-                                <select name="add-gender" class="form-control" required>
-                                    <option value="" selected disabled>Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                                <span class="input-group-text border"><i class="fas fa-solid fa-mars-and-venus"></i></span>
+                                <input type="text" name="add-class-name" class="form-control" required />
+                                <span class="input-group-text border"><i class="fas fa-solid fa-address-card"></i></span>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+
+                    <!-- Example of drop down input form -->
+                    <!-- <div class="row mt-2">
+                                    <div class="col">
+                                        <label for="add-gender">Gender</label><br />
+                                        <div class="input-group">
+                                            <select name="add-gender" class="form-control" required>
+                                                <option value="" selected disabled>Select Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                            <span class="input-group-text border"><i class="fas fa-solid fa-mars-and-venus"></i></span>
+                                        </div>
+                                    </div>
+                                </div> -->
 
                     <!-- Example a drop down input wherein the data comes from sql query -->
-                    <!-- <div class="row mt-2">
-                        <label for="add-department">Department</label><br />
+                    <div class="row mt-2">
+                        <label for="add-section-id">Section Name</label><br />
                         <div class="input-group">
-                            <select name="add-department" class="form-select" required>
+                            <select name="add-section-id" class="form-select" required>
                                 <option value="" selected="true" disabled="disabled"></option>
                                 <?php
-                                // $db->query("SELECT `id`,`department_name` FROM user_department;");
-                                // $db->execute();
-                                // $status_query = $db->resultSet();
-                                // $db->closeStmt();
-                                // foreach ($status_query as $row) { ?>
-                                <option value="<= $row->id ?>"><= $row->department_name ?></option>
+                                            $db->query("SELECT `id`,`section_name` FROM `section`;"); $db->execute(); $status_query = $db->resultSet(); $db->closeStmt(); foreach ($status_query as $row) { ?>
+                                <option value="<?= $row->id ?>"><?= $row->section_name ?></option>
                                 <?php 
-                                // }
-                                ?>
+                                            };
+                                            ?>
                             </select>
                             <span class="input-group-text"><i class="fas fa-solid fa-building-user"></i></span>
                         </div>
-                    </div> -->
+                    </div>
 
-                    
-                <!-- modal-body closing -->
-                <div class="modal-footer w-100">
-                    <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" value="Submit" name="add-" class="btn btn-primary">Add</button>
+                    <!-- modal-body closing -->
+                    <div class="modal-footer w-100">
+                        <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="Submit" name="add-classes" class="btn btn-primary">Add</button>
+                    </div>
                 </div>
             </form>
         </div>
