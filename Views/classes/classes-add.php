@@ -11,7 +11,7 @@ if (isset($_POST["add-"])) {
     // Always use POST method if sending data to the form. 
     // $ = $_POST[""];
 
-    // $db->query("");
+    // $db->query("");  
     // $db->execute();
     // $db->closeStmt();
     // $_SESSION["success"] = "Data has been added successfully.";

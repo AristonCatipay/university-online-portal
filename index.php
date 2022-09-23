@@ -117,10 +117,10 @@ if (isset($_POST["signIn"])) {
         </form>
 
         <div class="text-center mt-4" style="line-height: 14px;">
-            <h6 class="fw-bold fs-f">Developed by: Ariston Catipay</h6>
-            <div class="text-center mt-4">
+            <h6 class="fw-bold fs-f">Developed by: <a href="https://aristoncatipay.github.io/" target="_blank">Ariston Catipay</a></h6>
+            <!-- <div class="text-center mt-4">
                 <button type="button" class="btn btn-warning w-30" onclick="window.location.href = 'index.php';">Home</button>
-            </div>
+            </div> -->
         </div>
     </div>
     <script>

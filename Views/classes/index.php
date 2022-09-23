@@ -6,7 +6,7 @@ require_once "../../Controllers/Database.php";
 require_once "../../Controllers/Functions.php";
 setTitle("Classroom");
 $db = new Database();
-$table_name = "My Class";
+$table_name = "Classes";
 
 allow_specific_designation_only(["TEACHER", "DEVELOPER"]);
 
@@ -101,7 +101,7 @@ FROM
 `classes`,
 `users`
 WHERE
-`classes`.`user_id`=`users`.`id`;";
+`classes`.`user_id`=`users`.`id` AND `user_id`='{$_SESSION["logged_in_id"]}';";
 
 // Modify this part if you want to set a filter functionality. 
 // It will concatenate a sql query at the end of the first query.

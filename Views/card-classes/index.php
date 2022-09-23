@@ -91,29 +91,30 @@ allow_specific_designation_only(["TEACHER", "DEVELOPER", "STUDENT"]);
              `users`.`last_name`,
              `users`.`profile_file_name`,
              `classes`.`section_id`,
+             `section`.`section_name`,
              `classes`.`class_code`,
              `classes`.`class_name`
-             FROM
+         FROM
              `classes`,
-             `users`
-             WHERE
-             `classes`.`user_id`=`users`.`id`;");
+             `users`,
+             `section`
+         WHERE
+             `classes`.`user_id` = `users`.`id` AND `classes`.`section_id` = `section`.`id`;");
               $db->execute();
               $result = $db->resultSet();
               $db->closeStmt();
               foreach ($result as $row){ 
               ?>
                 <div class="col-xl-4 col-lg-6 cursor-pointer" >
-                <div class="card card-link overflow-hidden text-white h-50" style="background: white ;border-left: #D4AF37  solid 8px;">
-                    <div class="card-statistic-3 p-4 h-100">
+                <div class="card card-link overflow-hidden text-white h-100" style="background: white ;border-left: #D4AF37 solid 8px;">
+                    <div class="card-statistic-3 p-4 w-100 h-150">
                         <div class="d-flex justify-content-between flex-column h-100">
                             <div>
-                                
                                 <h5 class="d-flex align-items-center mb-0" _msthash="1214941" _msttexthash="32955" style="color: black;"><?= $row->class_code ?></h5>
                                 
                                 <p class="fs-a" style="color: black;"><?= $row->class_name?></p>
-                                <p class="fs-a" style="color: black;"><?= $row->section_id ?></p>
-                                <p class="fs-a" style="color: black;"><?= $row->first_name.$row->middle_name.$row->last_name ?></p>
+                                <p class="fs-b" style="color: black;"><?= $row->section_id." | ".$row->section_name?></p>
+                                <p class="fs-a" style="color: black;"><?= $row->first_name.$row->middle_name." ".$row->last_name ?></p>
                             </div>
 
                 <!-- <div class="justify-content-between flex-column h-100">
@@ -135,7 +136,7 @@ allow_specific_designation_only(["TEACHER", "DEVELOPER", "STUDENT"]);
                 </div> -->
 
         <div class="logo">
-        <img class="img-fluid" src ="<?= "../../Assets/img/profiles/".$row->profile_file_name; ?>"  style="float: right; height: 80px; width: 80px; border-radius: 50%;">
+        <img class="img-fluid" src ="<?= "../../Assets/img/profiles/".$row->profile_file_name; ?>"  style="float: right; height: 100px; width: 100px; border-radius: 50%; border: 2px solid #D4AF37; margin-top: 15px;">
         </a>    
     </div>
 

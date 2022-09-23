@@ -154,7 +154,7 @@ $unactivated_accounts_copy_text = "";
         ?>
           <div class="p-2 col-12 col-md-4 col-lg-3 col-xl-2 ">
             <div class="shadow-sm p-3 col-12 h-100">
-              <img src="../../Assets/img/profiles/<?= $account->profile_file_name ?>" height="90" width="90" class="mb-2 d-block mx-auto" alt="...">
+              <img src="../../Assets/img/profiles/<?= $account->profile_file_name ?>" height="90" width="90" style="border-radius: 50%;" class="mb-2 d-block mx-auto" alt="...">
               <div class="card-body d-flex flex-column gap-1">
                 <h6 class="card-title text-center"><?= $acc_full_name ?></h6>
                 <h6 class="card-title text-center"><?= "{$account->id}" ?></h6>
