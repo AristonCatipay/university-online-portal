@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2022 at 09:54 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Sep 24, 2022 at 12:44 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,7 +53,29 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`id`, `user_id`, `section_id`, `class_code`, `class_name`) VALUES
-('2022-ASGKS', '2022-H50T9', '2022-AAAAA', 'COSC-100', 'Automata Theory and Formal Languages');
+('2022-ASGKS', '2022-H50T9', '2022-AAAAA', 'COSC-100', 'Automata Theory and Formal Languages'),
+('2022-J8KEY', '2022-H50T9', '2022-ABCDE', 'COSC-TEST', 'This is a test class');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class_announcement`
+--
+
+CREATE TABLE `class_announcement` (
+  `id` int(11) NOT NULL,
+  `teacher_id` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `section_id` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `content` text NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `class_announcement`
+--
+
+INSERT INTO `class_announcement` (`id`, `teacher_id`, `section_id`, `content`, `timestamp`) VALUES
+(1, '2022-H50T9', '2022-AAAAA', 'This is just a test', '2022-09-24 09:41:48');
 
 -- --------------------------------------------------------
 
@@ -187,6 +209,14 @@ ALTER TABLE `classes`
   ADD KEY `section_id` (`section_id`);
 
 --
+-- Indexes for table `class_announcement`
+--
+ALTER TABLE `class_announcement`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `teacher_id` (`teacher_id`),
+  ADD KEY `section_id_cnn` (`section_id`);
+
+--
 -- Indexes for table `dashboard_cards`
 --
 ALTER TABLE `dashboard_cards`
@@ -230,6 +260,12 @@ ALTER TABLE `audit_logs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT for table `class_announcement`
+--
+ALTER TABLE `class_announcement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `dashboard_cards`
 --
 ALTER TABLE `dashboard_cards`
@@ -257,6 +293,13 @@ ALTER TABLE `user_type`
 ALTER TABLE `classes`
   ADD CONSTRAINT `section_id` FOREIGN KEY (`section_id`) REFERENCES `section` (`id`),
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `class_announcement`
+--
+ALTER TABLE `class_announcement`
+  ADD CONSTRAINT `section_id_cnn` FOREIGN KEY (`section_id`) REFERENCES `section` (`id`),
+  ADD CONSTRAINT `teacher_id` FOREIGN KEY (`teacher_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `users`
