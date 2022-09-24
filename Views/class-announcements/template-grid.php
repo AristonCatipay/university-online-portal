@@ -4,11 +4,11 @@ session_start();
 require_once "../../Controllers/Database.php";
 require_once "../../Controllers/Functions.php";
 require_once "../../Templates/header_view.php";
-setTitle("");
+setTitle("Set Name");
 $db = new Database();
 require_once("./template-add.php");
 
-$table_name = "";
+$table_name = "Set Name";
 
 // Add your filter functionality here.
 // $filter_department = null;
