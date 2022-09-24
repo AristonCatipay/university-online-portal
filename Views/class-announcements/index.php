@@ -18,9 +18,9 @@ $table_name = "Class Announcements";
 
 <!-- Add required files here. -->
 <?php require_once "../../Templates/sidebar.php"; ?>
-<?php //require_once("./ -add.php"); ?>
-<?php //require_once("./ -edit.php"); ?>
-<?php //require_once("./ -delete.php"); ?>
+<?php //require_once("./class-announcements-add.php"); ?>
+<?php //require_once("./class-announcements-edit.php"); ?>
+<?php //require_once("./class-announcements-delete.php"); ?>
 <!-- End of required files here. -->
 
 
@@ -55,7 +55,7 @@ $table_name = "Class Announcements";
 <!-- This page should only be seen by user type admin -->
   <h4 class="py-2"><?= $table_name ?></h4>
     <div>
-        <?php require_once "./template-filters.php"; ?>
+        <?php //require_once "./class-announcements-filters.php"; ?>
     </div>
     <!-- Tabs at the top of the data table. -->
     <!-- Change the class of the i tag using bootstrap icons. -->
