@@ -39,7 +39,7 @@ if (isset($_POST["add-"])) {
                             </div>
                         </div>
                     </div> -->
-                    
+
                     <!-- Example of drop down input form -->
                     <!-- <div class="row mt-2">
                         <div class="col">
@@ -76,11 +76,11 @@ if (isset($_POST["add-"])) {
                         </div>
                     </div> -->
 
-                    
-                <!-- modal-body closing -->
-                <div class="modal-footer w-100">
-                    <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" value="Submit" name="add-" class="btn btn-primary">Add</button>
+                    <!-- modal-body closing -->
+                    <div class="modal-footer w-100">
+                        <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="Submit" name="add-" class="btn btn-primary">Add</button>
+                    </div>
                 </div>
             </form>
         </div>

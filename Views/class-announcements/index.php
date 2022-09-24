@@ -18,9 +18,9 @@ $table_name = "Class Announcements";
 
 <!-- Add required files here. -->
 <?php require_once "../../Templates/sidebar.php"; ?>
-<?php //require_once("./class-announcements-add.php"); ?>
-<?php //require_once("./class-announcements-edit.php"); ?>
-<?php //require_once("./class-announcements-delete.php"); ?>
+<?php require_once("./class-announcements-add.php"); ?>
+<?php require_once("./class-announcements-edit.php"); ?>
+<?php require_once("./class-announcements-delete.php"); ?>
 <!-- End of required files here. -->
 
 
@@ -114,11 +114,11 @@ $table_data = [
         // The first variable is the column name in the sql query/table, 
         // The second one is the name of the table head of the data table.  
         // Example: "id" => "ID", 
+        "id" => "ID",
         "teacher_id" => "Teacher ID",
         "section_id" => "Section ID",
         "timestamp" => "Date",
         "content" => "Announcement",
-        "id" => "ID",
     ]),
 ];
 ?>
@@ -141,6 +141,9 @@ $table_data = [
       // dedicated input tags in the edit form of this page.
       // Example: $("#edit-id").val(rowObject['id']);
       // $("#").val(rowObject['']);
+      $("#edit-id").val(rowObject['id']);
+      $("#edit-content").val(rowObject['content']);
+      $("#edit-section-id").val(rowObject['section_id']);
     });
 
     // Delete record
@@ -150,6 +153,7 @@ $table_data = [
       // dedicated input tags in the edit form of this page.
       // Example: $("#delete-id").val(id);
       // $("#").val(rowObject['']);
+      $("#delete-id").val(id);
     });
 
     console.log(columns);
@@ -165,7 +169,7 @@ $table_data = [
         var textData = $(this).text().trim();
         rowObject[columnArr[i]] = textData;
         // if(i == [number of columns])
-        if(i == 0){
+        if(i == 5){
           $(this).attr("rowdata",JSON.stringify(rowObject));
         }
         i++;

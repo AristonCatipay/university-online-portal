@@ -7,14 +7,25 @@ require_once "../../Controllers/Date.php";
 $db = new Database();
 $date = new Date();
 
-if (isset($_POST["add-"])) {
+if (isset($_POST["add-class-announcements"])) {
     // Always use POST method if sending data to the form. 
     // $ = $_POST[""];
-
-    // $db->query("");
-    // $db->execute();
-    // $db->closeStmt();
-    // $_SESSION["success"] = "Data has been added successfully.";
+    $add_content = preg_replace('/\s+/S', " ", $_POST["add-content"]);
+    $add_section_id = $_POST["add-section-id"];
+    
+    $db->query("INSERT INTO `class_announcement`(
+        `teacher_id`,
+        `section_id`,
+        `content`
+    )
+    VALUES(
+        '{$_SESSION["logged_in_id"]}',
+        '{$add_section_id}',
+        '{$add_content}'
+    );"); 
+    $db->execute();
+    $db->closeStmt();
+    $_SESSION["success"] = "Data has been added successfully.";
     // $_SESSION["failed"] = "Data has been added successfully.";
 }
 ?>
@@ -22,7 +33,7 @@ if (isset($_POST["add-"])) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">Add</h5>
+                <h5 class="modal-title" id="addModalLabel">Add Class Announcement</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -39,7 +50,14 @@ if (isset($_POST["add-"])) {
                             </div>
                         </div>
                     </div> -->
-                    
+
+                    <div class="row mt-2">
+                        <div class="col">
+                            <label for="add-content">Content</label><br />
+                            <textarea type="text" rows="4" class="form-control" name="add-content" required></textarea>
+                        </div>
+                    </div>
+
                     <!-- Example of drop down input form -->
                     <!-- <div class="row mt-2">
                         <div class="col">
@@ -56,31 +74,27 @@ if (isset($_POST["add-"])) {
                     </div> -->
 
                     <!-- Example a drop down input wherein the data comes from sql query -->
-                    <!-- <div class="row mt-2">
-                        <label for="add-department">Department</label><br />
+                    <div class="row mt-2">
+                        <label for="add-section-id">Section ID</label><br />
                         <div class="input-group">
-                            <select name="add-department" class="form-select" required>
+                            <select name="add-section-id" class="form-select" required>
                                 <option value="" selected="true" disabled="disabled"></option>
                                 <?php
-                                // $db->query("SELECT `id`,`department_name` FROM user_department;");
-                                // $db->execute();
-                                // $status_query = $db->resultSet();
-                                // $db->closeStmt();
-                                // foreach ($status_query as $row) { ?>
-                                <option value="<= $row->id ?>"><= $row->department_name ?></option>
+                                $db->query("SELECT `id`,`section_name` FROM section;"); $db->execute(); $status_query = $db->resultSet(); $db->closeStmt(); foreach ($status_query as $row) { ?>
+                                <option value="<?= $row->id ?>"><?= $row->section_name ?></option>
                                 <?php 
-                                // }
+                                };
                                 ?>
                             </select>
                             <span class="input-group-text"><i class="fas fa-solid fa-building-user"></i></span>
                         </div>
-                    </div> -->
+                    </div>
 
-                    
-                <!-- modal-body closing -->
-                <div class="modal-footer w-100">
-                    <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" value="Submit" name="add-" class="btn btn-primary">Add</button>
+                    <!-- modal-body closing -->
+                    <div class="modal-footer w-100">
+                        <button type="button" class="btn btn-secondary ms-auto" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" value="Submit" name="add-class-announcements" class="btn btn-primary">Add</button>
+                    </div>
                 </div>
             </form>
         </div>

@@ -5,12 +5,12 @@ require_once "../../Controllers/Database.php";
 $db = new Database();
 
   if(isset($_POST["deleteRow"])){
-    // $db->query("SELECT FROM WHERE id='{$_POST['']}';");
-    // $db->execute();
-    // $db->closeStmt();
+    $db->query("DELETE FROM `class_announcement` WHERE id='{$_POST['id']}';");
+    $db->execute();
+    $db->closeStmt();
     
     // $_SESSION["failed"] = "Unsuccessful data deletion.";
-    // $_SESSION["success"] = "Data has been removed successfully.";
+    $_SESSION["success"] = "Data has been removed successfully.";
   }
 ?>
 

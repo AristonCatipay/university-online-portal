@@ -5,14 +5,22 @@ require_once "../../Controllers/Functions.php";
 
 $db = new Database();
 
-if (isset($_POST["edit"])) {
+if (isset($_POST["edit-class-announcements"])) {
   // $ = $_POST[""];
+  $edit_content = preg_replace('/\s+/S', " ", $_POST["edit-content"]);
+  $edit_section_id = $_POST["edit-section-id"];
 
-//   $db->query("");
-//   $db->execute();
-//   $db->closeStmt();
+  $db->query("UPDATE
+  `class_announcement`
+SET
+  `section_id` = '{$edit_section_id}',
+  `content` = '{$edit_content}'
+WHERE
+  `id`={$_POST["edit-id"]}");
+  $db->execute();
+  $db->closeStmt();
 
-//   $_SESSION["success"] = "Data has been updated successfully.";
+  $_SESSION["success"] = "Data has been updated successfully.";
 //   $_SESSION["failed"] = "Data is already in the database.";
 }
 ?>
@@ -21,7 +29,7 @@ if (isset($_POST["edit"])) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+                <h5 class="modal-title" id="editModalLabel">Edit Class Announcement</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -33,12 +41,35 @@ if (isset($_POST["edit"])) {
                         <div class="col">
                             <label for="fname">First Name</label><br />
                             <div class="input-group">
-                                <input type="hidden" name="user-id" id="user-id" class="form-control" />
                                 <input type="text" name="first-name" id="first-name" class="form-control" />
                                 <span class="input-group-text border"><i class="fas fa-solid fa-address-card"></i></span>
                             </div>
                         </div>
                     </div> -->
+                    
+                    <div class="row mt-2">
+                        <div class="col">
+                            <label for="edit-content">Content</label><br />
+                            <input type="hidden" name="edit-id" id="edit-id" class="form-control" />
+                            <textarea type="text" rows="4" class="form-control" name="edit-content" id="edit-content" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <label for="add-section-id">Section ID</label><br />
+                        <div class="input-group">
+                            <select name="edit-section-id" id="edit-section-id" class="form-select" required>
+                                <option value="" selected="true" disabled="disabled"></option>
+                                <?php
+                                $db->query("SELECT `id`,`section_name` FROM section;"); $db->execute(); $status_query = $db->resultSet(); $db->closeStmt(); foreach ($status_query as $row) { ?>
+                                <option value="<?= $row->id ?>"><?= $row->section_name ?></option>
+                                <?php 
+                                };
+                                ?>
+                            </select>
+                            <span class="input-group-text"><i class="fas fa-solid fa-building-user"></i></span>
+                        </div>
+                    </div>
 
                     <!-- Example of drop down input form -->
                     <!-- <div class="row mt-2">
@@ -78,7 +109,7 @@ if (isset($_POST["edit"])) {
                 <!-- modal-body closing -->
                 <div class="modal-footer w-100">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit"  value="Submit" name="edit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit"  value="Submit" name="edit-class-announcements" class="btn btn-primary">Save Changes</button>
                 </div>
             </form>
         </div>
