@@ -44,19 +44,7 @@
                             "users" => array("path" => "users", "icon" => "fa-solid fa-users"),
                             "classes" => array("path" => "classes", "icon" => "fa-solid fa-users-rectangle"),
                             "card classes" => array("path" => "card-classes", "icon" => "fa-solid fa-chalkboard-user"),
-                            "announcements" => array("path" => "class-announcements", "icon" => "fa-solid fa-bullhorn"), 
                         );
-                        // if($_SESSION["logged_in_user_type"] == "viewer"){
-                        //     $nav_links_icons = array("dashboard" => array("path" => "dashboard", "icon" => "fa-solid fa-table-columns"),
-                        //     "profile" => array("path" => "profile", "icon" => "fa-solid fa-user"),
-                        //     "business" => array("path" => "business", "icon" => "fa-solid fa-building"),
-                        //     "expo details" => array("path" => "expo-details", "icon" => "fa-solid fa-e"),
-                        //     "media partners" => array("path" => "media-partners", "icon" => "fa-solid fa-photo-video"),
-                        //     "PTE template links" => array("path" => "pte-link-template", "icon" => "fa-solid fa-book"),
-                        //     "point person" => array("path" => "point-person", "icon" => "fa-solid fa-address-book"),
-                        // );
-                        // }   
-                        
                     }
                     ?>
 

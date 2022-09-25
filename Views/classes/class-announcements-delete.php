@@ -25,7 +25,7 @@ $db = new Database();
         Are you sure you want to delete this data?
       </div>
 
-      <form action="./index.php" method="POST">
+      <form action="./class-announcements-index.php" method="POST">
       <input type="hidden" name="id" id="delete-id">
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -31,11 +31,11 @@ if (isset($_POST["edit"])) {
                     <!-- Example of normal input form -->
                     <!-- <div class="row mt-2">
                         <div class="col">
-                            <label for="fname">First Name</label><br />
+                            <label for=""></label><br />
                             <div class="input-group">
-                                <input type="hidden" name="user-id" id="user-id" class="form-control" />
-                                <input type="text" name="first-name" id="first-name" class="form-control" />
-                                <span class="input-group-text border"><i class="fas fa-solid fa-address-card"></i></span>
+                                <input type="hidden" name="" id="" class="form-control" />
+                                <input type="text" name="" id="" class="form-control" />
+                                <span class="input-group-text border"><i class=""></i></span>
                             </div>
                         </div>
                     </div> -->
@@ -43,14 +43,14 @@ if (isset($_POST["edit"])) {
                     <!-- Example of drop down input form -->
                     <!-- <div class="row mt-2">
                         <div class="col">
-                            <label for="gender">Gender</label><br />
+                            <label for=""></label><br />
                             <div class="input-group">
-                                <select name="gender" id="user-gender" class="form-control">
+                                <select name="" id="" class="form-control">
                                     <option value="" selected disabled></option>
-                                    <option value="male">MALE</option>
-                                    <option value="female">FEMALE</option>
+                                    <option value=""></option>
+                                    <option value=""></option>
                                 </select>
-                                <span class="input-group-text border"><i class="fas fa-solid fa-mars-and-venus"></i></span>
+                                <span class="input-group-text border"><i class=""></i></span>
                             </div>
                         </div>
                     </div> -->
@@ -64,13 +64,18 @@ if (isset($_POST["edit"])) {
                             <select name="department" id="department-id" class="form-select">
                                 <option value="" selected="true" disabled="disabled"></option>
                                 <?php
-                //   $db->query("SELECT `id`,`department_name` FROM user_department;"); $db->execute(); $status_query = $db->resultSet(); $db->closeStmt(); foreach ($status_query as $row) { ?>
-                                <option value="<= $row->id?>"><= $row->department_name?></option>
+                                    // $db->query("SELECT `id`,`` FROM ;"); 
+                                    // $db->execute(); 
+                                    // $result = $db->resultSet(); 
+                                    // $db->closeStmt(); 
+                                    // foreach ($result as $row) { 
+                                ?>
+                                <option value="<= $row->id?>"><= $row->?></option>
                                 <?php
-                //   };
-                  ?>
+                                //   };
+                                ?>
                             </select>
-                            <span class="input-group-text"><i class="fas fa-solid fa-building-user"></i></span>
+                            <span class="input-group-text"><i class=""></i></span>
                         </div>
                     </div> -->
 

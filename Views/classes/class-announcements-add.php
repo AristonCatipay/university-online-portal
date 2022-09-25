@@ -37,20 +37,8 @@ if (isset($_POST["add-class-announcements"])) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="index.php" method="POST">
+            <form action="./class-announcements-index.php" method="POST">
                 <div class="modal-body">
-                    <!-- Don't include id for the input forms unless you will use this for CSS -->
-                    <!-- Example of normal input form -->
-                    <!-- <div class="row mt-2">
-                        <div class="col">
-                            <label for="add-first-name">First Name</label><br />
-                            <div class="input-group">
-                                <input type="text" name="add-first-name" class="form-control" required/>
-                                <span class="input-group-text border"><i class="fas fa-solid fa-address-card"></i></span>
-                            </div>
-                        </div>
-                    </div> -->
-
                     <div class="row mt-2">
                         <div class="col">
                             <label for="add-content">Content</label><br />
@@ -58,22 +46,6 @@ if (isset($_POST["add-class-announcements"])) {
                         </div>
                     </div>
 
-                    <!-- Example of drop down input form -->
-                    <!-- <div class="row mt-2">
-                        <div class="col">
-                            <label for="add-gender">Gender</label><br />
-                            <div class="input-group">
-                                <select name="add-gender" class="form-control" required>
-                                    <option value="" selected disabled>Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
-                                <span class="input-group-text border"><i class="fas fa-solid fa-mars-and-venus"></i></span>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <!-- Example a drop down input wherein the data comes from sql query -->
                     <div class="row mt-2">
                         <label for="add-section-id">Section ID</label><br />
                         <div class="input-group">

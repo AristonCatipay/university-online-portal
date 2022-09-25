@@ -11,9 +11,9 @@ $table_name = "Classes";
 allow_specific_designation_only(["TEACHER", "DEVELOPER"]);
 
 // Add your filter functionality here.
-// $filter_department = null;
-// if (isset($_GET["selected_department"])) {
-//   $filter_department = $_GET["selected_department"];
+// $filter = null;
+// if (isset($_GET["selected"])) {
+//   $filter = $_GET["selected"];
 // }
 // End of filter functionality here.
 ?>
@@ -65,17 +65,17 @@ allow_specific_designation_only(["TEACHER", "DEVELOPER"]);
     <div>
         <ul class="nav nav-tabs flex-row justify-content-start">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="./index.php">Index<i class="" data-toggle="tooltip" data-placement="top" title=""></i></a>
+                <a class="nav-link active" aria-current="page" href="./index.php"><i class="fa-solid fa-chalkboard-user" data-toggle="tooltip" data-placement="top" title=""></i></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="./class-announcements-index.php"><i class="fa-solid fa-bullhorn" data-toggle="tooltip" data-placement="top" title="Class Announcement"></i></a>
+            </li>
+            <!-- <li class="nav-item">
                 <a class="nav-link" href=""><i class="" data-toggle="tooltip" data-placement="top" title=""></i></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href=""><i class="" data-toggle="tooltip" data-placement="top" title=""></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href=""><i class="" data-toggle="tooltip" data-placement="top" title=""></i></a>
-            </li>
+            </li> -->
         </ul>
     </div>
     <!-- End of tabs at the top of the data table. -->
@@ -105,8 +105,8 @@ WHERE
 
 // Modify this part if you want to set a filter functionality. 
 // It will concatenate a sql query at the end of the first query.
-// if ($filter_department && $filter_department != "All Department") {
-//     $select_user_query = $select_user_query . " AND user_department.department_name='{$filter_department}'";
+// if ($filter && $filter != "All") {
+//     $filter_query = $filter_query . " AND user_department.department_name='{$filter}'";
 // }
 // End of filter functionality here.
 

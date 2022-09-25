@@ -9,9 +9,9 @@ $db = new Database();
 $table_name = "Set Name";
 
 // Add your filter functionality here.
-// $filter_department = null;
-// if (isset($_GET["selected_department"])) {
-//   $filter_department = $_GET["selected_department"];
+// $filter = null;
+// if (isset($_GET["selected"])) {
+//   $filter = $_GET["selected"];
 // }
 // End of filter functionality here.
 ?>
@@ -55,7 +55,7 @@ $table_name = "Set Name";
 <!-- This page should only be seen by user type admin -->
   <h4 class="py-2"><?= $table_name ?></h4>
     <div>
-        <?php require_once "./template-filters.php"; ?>
+        <?php //require_once "./-filters.php"; ?>
     </div>
     <!-- Tabs at the top of the data table. -->
     <!-- Change the class of the i tag using bootstrap icons. -->
@@ -90,8 +90,8 @@ $query = "";
 
 // Modify this part if you want to set a filter functionality. 
 // It will concatenate a sql query at the end of the first query.
-// if ($filter_department && $filter_department != "All Department") {
-//     $select_user_query = $select_user_query . " AND user_department.department_name='{$filter_department}'";
+// if ($filter && $filter != "All") {
+//     $filter_query = $filter_query . " AND user_department.department_name='{$filter}'";
 // }
 // End of filter functionality here.
 

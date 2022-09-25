@@ -32,10 +32,10 @@ if (isset($_POST["add-"])) {
                     <!-- Example of normal input form -->
                     <!-- <div class="row mt-2">
                         <div class="col">
-                            <label for="add-first-name">First Name</label><br />
+                            <label for="add"></label><br />
                             <div class="input-group">
-                                <input type="text" name="add-first-name" class="form-control" required/>
-                                <span class="input-group-text border"><i class="fas fa-solid fa-address-card"></i></span>
+                                <input type="text" name="add-" class="form-control" required/>
+                                <span class="input-group-text border"><i class=""></i></span>
                             </div>
                         </div>
                     </div> -->
@@ -43,12 +43,12 @@ if (isset($_POST["add-"])) {
                     <!-- Example of drop down input form -->
                     <!-- <div class="row mt-2">
                         <div class="col">
-                            <label for="add-gender">Gender</label><br />
+                            <label for="add-"></label><br />
                             <div class="input-group">
-                                <select name="add-gender" class="form-control" required>
-                                    <option value="" selected disabled>Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                <select name="add-" class="form-control" required>
+                                    <option value="" selected disabled>Select </option>
+                                    <option value=""></option>
+                                    <option value=""></option>
                                 </select>
                                 <span class="input-group-text border"><i class="fas fa-solid fa-mars-and-venus"></i></span>
                             </div>
@@ -57,22 +57,23 @@ if (isset($_POST["add-"])) {
 
                     <!-- Example a drop down input wherein the data comes from sql query -->
                     <!-- <div class="row mt-2">
-                        <label for="add-department">Department</label><br />
+                        <label for="add-"></label><br/>
                         <div class="input-group">
-                            <select name="add-department" class="form-select" required>
+                            <select name="add-" class="form-select" required>
                                 <option value="" selected="true" disabled="disabled"></option>
                                 <?php
-                                // $db->query("SELECT `id`,`department_name` FROM user_department;");
+                                // $db->query("SELECT `id`,`` FROM ;");
                                 // $db->execute();
-                                // $status_query = $db->resultSet();
+                                // $result = $db->resultSet();
                                 // $db->closeStmt();
-                                // foreach ($status_query as $row) { ?>
-                                <option value="<= $row->id ?>"><= $row->department_name ?></option>
+                                // foreach ($result as $row) { 
+                                ?>
+                                <option value="<= $row->id ?>"><= $row-> ?></option>
                                 <?php 
-                                // }
+                                // };
                                 ?>
                             </select>
-                            <span class="input-group-text"><i class="fas fa-solid fa-building-user"></i></span>
+                            <span class="input-group-text"><i class=""></i></span>
                         </div>
                     </div> -->
 

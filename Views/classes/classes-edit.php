@@ -37,19 +37,6 @@ WHERE
 
             <form action="index.php" method="POST">
                 <div class="modal-body">
-                    <!-- Include id for the input forms using the id in the index form edit button-->
-                    <!-- Example of normal input form -->
-                    <!-- <div class="row mt-2">
-                        <div class="col">
-                            <label for="fname">First Name</label><br />
-                            <div class="input-group">
-                                <input type="hidden" name="user-id" id="user-id" class="form-control" />
-                                <input type="text" name="first-name" id="first-name" class="form-control" />
-                                <span class="input-group-text border"><i class="fas fa-solid fa-address-card"></i></span>
-                            </div>
-                        </div>
-                    </div> -->
-
                     <div class="row mt-2">
                         <div class="col">
                             <label for="edit-class-code">Class Code</label><br />
@@ -69,40 +56,6 @@ WHERE
                             </div>
                         </div>
                     </div>
-
-                    <!-- Example of drop down input form -->
-                    <!-- <div class="row mt-2">
-                        <div class="col">
-                            <label for="gender">Gender</label><br />
-                            <div class="input-group">
-                                <select name="gender" id="user-gender" class="form-control">
-                                    <option value="" selected disabled></option>
-                                    <option value="male">MALE</option>
-                                    <option value="female">FEMALE</option>
-                                </select>
-                                <span class="input-group-text border"><i class="fas fa-solid fa-mars-and-venus"></i></span>
-                            </div>
-                        </div>
-                    </div> -->
-
-                  
-                    
-                    <!-- Example a drop down input wherein the data comes from sql query -->
-                    <!-- <div class="row mt-2">
-                        <label for="status">Department</label><br />
-                        <div class="input-group">
-                            <select name="department" id="department-id" class="form-select">
-                                <option value="" selected="true" disabled="disabled"></option>
-                                <?php
-                //   $db->query("SELECT `id`,`department_name` FROM user_department;"); $db->execute(); $status_query = $db->resultSet(); $db->closeStmt(); foreach ($status_query as $row) { ?>
-                                <option value="<= $row->id?>"><= $row->department_name?></option>
-                                <?php
-                //   };
-                  ?>
-                            </select>
-                            <span class="input-group-text"><i class="fas fa-solid fa-building-user"></i></span>
-                        </div>
-                    </div> -->
 
                     <div class="row mt-2">
                         <label for="edit-section-id">Section Name</label><br />

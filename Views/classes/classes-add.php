@@ -73,21 +73,6 @@ if (isset($_POST["add-classes"])) {
                         </div>
                     </div>
 
-                    <!-- Example of drop down input form -->
-                    <!-- <div class="row mt-2">
-                                    <div class="col">
-                                        <label for="add-gender">Gender</label><br />
-                                        <div class="input-group">
-                                            <select name="add-gender" class="form-control" required>
-                                                <option value="" selected disabled>Select Gender</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                            </select>
-                                            <span class="input-group-text border"><i class="fas fa-solid fa-mars-and-venus"></i></span>
-                                        </div>
-                                    </div>
-                                </div> -->
-
                     <!-- Example a drop down input wherein the data comes from sql query -->
                     <div class="row mt-2">
                         <label for="add-section-id">Section Name</label><br />
