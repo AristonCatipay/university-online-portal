@@ -8,7 +8,30 @@ setTitle("Classroom");
 $db = new Database();
 $table_name = "My Class";
 
+
 allow_specific_designation_only(["TEACHER", "DEVELOPER", "STUDENT"]);
+if(isset($_SESSION['class_id']))$class_id = $_SESSION['class_id'];
+
+$db->query("SELECT
+`classes`.`id`,
+`classes`.`user_id`,
+`users`.`first_name`,
+`users`.`middle_name`,
+`users`.`last_name`,
+`users`.`profile_file_name` AS profile_file_name,
+`classes`.`section_id`,
+`section`.`section_name`,
+`classes`.`class_code`,
+`classes`.`class_name`
+FROM
+`classes`,
+`users`,
+`section`
+WHERE
+`classes`.`user_id` = `users`.`id` AND `classes`.`section_id` = `section`.`id` AND `classes`.`id`='{$class_id}';");
+$db->execute();
+$result_set = $db->resultSet();
+$db->closeStmt();
 
 // Add your filter functionality here.
 // $filter_department = null;
@@ -16,15 +39,6 @@ allow_specific_designation_only(["TEACHER", "DEVELOPER", "STUDENT"]);
 //   $filter_department = $_GET["selected_department"];
 // }
 // End of filter functionality here.
-
-
-
-if (isset($_POST["submit-class-id"])) {
-    $_SESSION['class_id'] = $_POST["id"];
-    $url = "../card-class-post/index.php";
-    header('Location: '.$url);
-    die();
-}
 ?>
 
 <!-- Add required files here. -->
@@ -90,7 +104,18 @@ if (isset($_POST["submit-class-id"])) {
 </div>
 
 <h4 class="my-2">Classes</h4>
-        <div class="row equal">
+    <div class="row equal">
+            <div class="card text-dark bg-warning mb-3">
+            <h5 class="card-header"></h5>
+            <div class="card-body">
+                <h5 class="card-title">Class ID: <?= $class_id ?></h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content <?= $result_set["profile_file_name"] ?>.</p>
+                <div class="logo">
+                    <img class="img-fluid" src="../../Assets/img/profiles/<?= $result_set["profile_file_name"] ?>"  style="float: right; height: 100px; width: 100px; border-radius: 50%; border: 2px solid #D4AF37; margin-top: 30px;">
+                    </a>    
+                </div>
+            </div>
+            </div>
         <?php 
              $db->query("SELECT
              `classes`.`id`,
@@ -114,52 +139,61 @@ if (isset($_POST["submit-class-id"])) {
               $db->closeStmt();
               foreach ($result as $row){ 
               ?>
-                <div class="col-xl-4 col-lg-6 cursor-pointer" >
+                <!-- <div class="col-xl-4 col-lg-6 cursor-pointer" >
                 <div class="card card-link overflow-hidden text-white h-100" style="background: white ;border-left: #D4AF37 solid 8px;">
                     <div class="card-statistic-3 p-4 w-100 h-150">
                         <div class="d-flex justify-content-between flex-column h-100">
                             <div>
                                 <h5 class="d-flex align-items-center mb-0" _msthash="1214941" _msttexthash="32955" style="color: black;"><?= $row->class_code ?></h5>
                                 
-                                <p class="fs-a" style="color: black;"><?= $row->class_name?></p>
-                                <p class="fs-b" style="color: black;"><?= $row->section_id." | ".$row->section_name?></p>
-                                <p class="fs-a" style="color: black;"><?= $row->first_name.$row->middle_name." ".$row->last_name ?></p>
-                                <form action="index.php" method="POST">
-                                    <input type="text" name="id" value="<?= $row->id?>">
-                                    <button type="submit" value="Submit" name="submit-class-id" class="btn btn-primary">Enter</button>
-                                </form>
+                                <p class="fs-a" style="color: black;"><= $row->class_name?></p>
+                                <p class="fs-b" style="color: black;"><= $row->section_id." | ".$row->section_name?></p>
+                                <p class="fs-a" style="color: black;"><= $row->first_name.$row->middle_name." ".$row->last_name ?></p>
                             </div>
 
-                <!-- <div class="justify-content-between flex-column h-100">
-                    <a href="<= $row->fb_link ?>" target="<= $row->section_id?>">
-                    <i class="fa-brands fa-facebook"></i>
-                    </a>
-
-                    <a href="<= $row->insta_link ?>" target="<= $row->insta_link ?>">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-
-                    <a href="<= $row->web_link ?>" target="<= $row->web_link ?>">
-                        <i class="fa-solid fa-globe"></i>
-                    </a>
-
-                    <a href target>
-                        <i class="fa-brands fa-twitter"></i>
-                    </a>
-                </div> -->
-
-        <div class="logo">
-        <img class="img-fluid" src ="<?= "../../Assets/img/profiles/".$row->profile_file_name; ?>"  style="float: right; height: 100px; width: 100px; border-radius: 50%; border: 2px solid #D4AF37; margin-top: 15px;">
-        </a>    
-    </div>
+                
 
                         </div>
                     </div>
                 </div>
+            </div> -->
+            <div class="card text-center text-dark bg-warning mb-3">
+              <!-- <div class="card-header" style="max-height: 4rem;">
+                <ul class="nav nav-pills card-header-pills" >
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#">Active</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                  </li>
+                </ul>
+              </div> -->
+              <div class="card-body text-center">
+                <h5 class="card-title"><?= $row->class_name?></h5>
+                <p class="card-text"><?= $row->section_id." | ".$row->section_name?></p>
+                <p class="card-text"><?= $row->first_name.$row->middle_name." ".$row->last_name ?></p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
             </div>
 <?php
         } ;
              ?>
+
 
 
 <script src="../../Assets/js/datatables_functions.js"></script>

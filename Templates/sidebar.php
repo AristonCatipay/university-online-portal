@@ -44,6 +44,7 @@
                             "users" => array("path" => "users", "icon" => "fa-solid fa-users"),
                             "classes" => array("path" => "classes", "icon" => "fa-solid fa-users-rectangle"),
                             "card classes" => array("path" => "card-classes", "icon" => "fa-solid fa-chalkboard-user"),
+                            "classes post" => array("path" => "card-class-post", "icon" => "fa-solid fa-chalkboard-user"),
                         );
                     }
                     ?>
