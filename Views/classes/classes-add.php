@@ -80,11 +80,15 @@ if (isset($_POST["add-classes"])) {
                             <select name="add-section-id" class="form-select" required>
                                 <option value="" selected="true" disabled="disabled"></option>
                                 <?php
-                                            $db->query("SELECT `id`,`section_name` FROM `section`;"); $db->execute(); $status_query = $db->resultSet(); $db->closeStmt(); foreach ($status_query as $row) { ?>
+                                    $db->query("SELECT `id`,`section_name` FROM `section`;"); 
+                                    $db->execute();
+                                    $status_query = $db->resultSet(); $db->closeStmt(); 
+                                    foreach ($status_query as $row) {
+                                    ?>
                                 <option value="<?= $row->id ?>"><?= $row->section_name ?></option>
                                 <?php 
-                                            };
-                                            ?>
+                                    };
+                                ?>
                             </select>
                             <span class="input-group-text"><i class="fas fa-solid fa-building-user"></i></span>
                         </div>

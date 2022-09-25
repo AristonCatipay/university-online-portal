@@ -6,33 +6,14 @@ require_once "../../Controllers/Database.php";
 require_once "../../Controllers/Functions.php";
 setTitle("Classroom");
 $db = new Database();
+$date = new Date();
 $table_name = "My Class";
 
 
 allow_specific_designation_only(["TEACHER", "DEVELOPER", "STUDENT"]);
-if(isset($_SESSION['class_id']))$class_id = $_SESSION['class_id'];
-
-$db->query("SELECT
-`classes`.`id`,
-`classes`.`user_id`,
-`users`.`first_name`,
-`users`.`middle_name`,
-`users`.`last_name`,
-`users`.`profile_file_name` AS profile_file_name,
-`classes`.`section_id`,
-`section`.`section_name`,
-`classes`.`class_code`,
-`classes`.`class_name`
-FROM
-`classes`,
-`users`,
-`section`
-WHERE
-`classes`.`user_id` = `users`.`id` AND `classes`.`section_id` = `section`.`id` AND `classes`.`id`='{$class_id}';");
-$db->execute();
-$result_set = $db->resultSet();
-$db->closeStmt();
-
+if(isset($_SESSION['class_id'])){
+    $class_id = $_SESSION['class_id'];
+}
 // Add your filter functionality here.
 // $filter_department = null;
 // if (isset($_GET["selected_department"])) {
@@ -104,18 +85,45 @@ $db->closeStmt();
 </div>
 
 <h4 class="my-2">Classes</h4>
+    <!-- Query for class details -->
     <div class="row equal">
-            <div class="card text-dark bg-warning mb-3">
-            <h5 class="card-header"></h5>
-            <div class="card-body">
-                <h5 class="card-title">Class ID: <?= $class_id ?></h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content <?= $result_set["profile_file_name"] ?>.</p>
-                <div class="logo">
-                    <img class="img-fluid" src="../../Assets/img/profiles/<?= $result_set["profile_file_name"] ?>"  style="float: right; height: 100px; width: 100px; border-radius: 50%; border: 2px solid #D4AF37; margin-top: 30px;">
-                    </a>    
-                </div>
-            </div>
-            </div>
+        <?php
+        $db->query("SELECT
+        `classes`.`id`,
+        `classes`.`user_id`,
+        `users`.`first_name`,
+        `users`.`middle_name`,
+        `users`.`last_name`,
+        `users`.`profile_file_name` AS profile_file_name,
+        `classes`.`section_id`,
+        `section`.`section_name`,
+        `classes`.`class_code`,
+        `classes`.`class_name`
+        FROM
+        `classes`,
+        `users`,
+        `section`
+        WHERE
+        `classes`.`user_id` = `users`.`id` AND `classes`.`section_id` = `section`.`id` AND `classes`.`id`='{$class_id}';");
+        $db->execute();
+        $result_set = $db->fetch();
+        $db->closeStmt();
+        ?>
+
+        <div class="card text-dark" style="background: white; border-left: #D4AF37 solid 8px;">
+          <div class="card-body">
+              <h6 class="card-title" style="max-width:10rem;"><?= $result_set["class_code"]." | ".$result_set["class_name"] ?></h6>
+              <h7 class="card-title"><?= $result_set["section_id"]." | ".$result_set["section_name"] ?></h7>
+              <p class="card-text">Professor: <?= $result_set["first_name"]." ".$result_set["middle_name"]." ".$result_set["last_name"] ?> </p>
+              <div class="logo">
+                  <img class="img-fluid" src="../../Assets/img/profiles/<?= $result_set["profile_file_name"] ?>"  style="float: right; height: 100px; width: 100px; border-radius: 50%; border: 2px solid #D4AF37; margin-top: 15px;">
+                  </a>    
+              </div>
+          </div>
+        </div>
+      
+        <!-- Query for class post -->
+        <div class="accordion" id="accordionExample">
         <?php 
              $db->query("SELECT
              `classes`.`id`,
@@ -137,65 +145,27 @@ $db->closeStmt();
               $db->execute();
               $result = $db->resultSet();
               $db->closeStmt();
-              foreach ($result as $row){ 
+              foreach ($result as $row){
+                $id = $date->getYear() . "-" . randomWord();
               ?>
-                <!-- <div class="col-xl-4 col-lg-6 cursor-pointer" >
-                <div class="card card-link overflow-hidden text-white h-100" style="background: white ;border-left: #D4AF37 solid 8px;">
-                    <div class="card-statistic-3 p-4 w-100 h-150">
-                        <div class="d-flex justify-content-between flex-column h-100">
-                            <div>
-                                <h5 class="d-flex align-items-center mb-0" _msthash="1214941" _msttexthash="32955" style="color: black;"><?= $row->class_code ?></h5>
-                                
-                                <p class="fs-a" style="color: black;"><= $row->class_name?></p>
-                                <p class="fs-b" style="color: black;"><= $row->section_id." | ".$row->section_name?></p>
-                                <p class="fs-a" style="color: black;"><= $row->first_name.$row->middle_name." ".$row->last_name ?></p>
-                            </div>
-
-                
-
-                        </div>
-                    </div>
+                <div class="accordion-item">
+              <h2 class="accordion-header" id="<?= $id?>">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Accordion Item #2
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                 </div>
-            </div> -->
-            <div class="card text-center text-dark bg-warning mb-3">
-              <!-- <div class="card-header" style="max-height: 4rem;">
-                <ul class="nav nav-pills card-header-pills" >
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                  </li>
-                </ul>
-              </div> -->
-              <div class="card-body text-center">
-                <h5 class="card-title"><?= $row->class_name?></h5>
-                <p class="card-text"><?= $row->section_id." | ".$row->section_name?></p>
-                <p class="card-text"><?= $row->first_name.$row->middle_name." ".$row->last_name ?></p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
-<?php
-        } ;
-             ?>
-
-
-
+            <?php
+               } ;
+            ?>
+            </div>
+            </div>
+              </div>
 <script src="../../Assets/js/datatables_functions.js"></script>
 </script>
 </body>

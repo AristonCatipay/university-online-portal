@@ -42,11 +42,13 @@ class Database {
         return $this->stmt->fetch();
     }
     
+    // Use this function if the query will retrieve more than 1 row data.
     public function resultSet() {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    // Use this function if the query will only retrieve one row data.
     public function fetchObject() {
         return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
