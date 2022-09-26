@@ -21,6 +21,7 @@ allow_specific_designation_only(["TEACHER", "DEVELOPER", "STUDENT"]);
 
 if (isset($_POST["submit-class-id"])) {
     $_SESSION['class_id'] = $_POST["id"];
+    $_SESSION['section_id'] = $_POST["section-id"];
     $url = "../card-class-post/index.php";
     header('Location: '.$url);
     die();
@@ -123,9 +124,10 @@ if (isset($_POST["submit-class-id"])) {
                                 
                                 <p class="fs-a" style="color: black;"><?= $row->class_name?></p>
                                 <p class="fs-b" style="color: black;"><?= $row->section_id." | ".$row->section_name?></p>
-                                <p class="fs-a" style="color: black;"><?= $row->first_name.$row->middle_name." ".$row->last_name ?></p>
+                                <p class="fs-a" style="color: black;"><?= $row->first_name." ".$row->middle_name." ".$row->last_name ?></p>
                                 <form action="index.php" method="POST">
-                                    <input type="text" name="id" value="<?= $row->id?>">
+                                    <input type="hidden" name="id" value="<?= $row->id?>">
+                                    <input type="hidden" name="section-id" value="<?= $row->section_id?>">
                                     <button type="submit" value="Submit" name="submit-class-id" class="btn btn-primary">Enter</button>
                                 </form>
                             </div>
