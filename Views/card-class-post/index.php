@@ -119,7 +119,7 @@ if(isset($_SESSION['section_id'])){
     FROM
         `class_announcement`
     WHERE
-        `section_id` = '{$_SESSION['section_id']}' AND `teacher_id` = '{$result_set["user_id"]}';");
+        `section_id` = '$section_id' AND `teacher_id` = '{$result_set["user_id"]}';");
         $db->execute();
         $result = $db->resultSet();
         $db->closeStmt();
