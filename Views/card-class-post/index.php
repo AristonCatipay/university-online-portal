@@ -94,7 +94,7 @@ if(isset($_SESSION['section_id'])){
     `classes`.`class_code`, `classes`.`class_name` FROM `classes`, `users`, `section` WHERE `classes`.`user_id` = `users`.`id` AND `classes`.`section_id` = `section`.`id` AND `classes`.`id`='{$class_id}';"); $db->execute(); $result_set =
     $db->fetch(); $db->closeStmt(); ?>
 
-    <div class="card text-dark" style="background: white; border-left: #d4af37 solid 8px;">
+    <div class="card text-dark" style="background: white; border-left: #d4af37 solid 8px; height:15rem;">
         <div class="card-body">
             <h6 class="card-title" style="max-width: 10rem;"><?= $result_set["class_code"]." | ".$result_set["class_name"] ?></h6>
             <h7 class="card-title"><?= $result_set["section_id"]." | ".$result_set["section_name"] ?></h7>
