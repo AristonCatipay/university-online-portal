@@ -11,6 +11,7 @@ $table_name = "My Class";
 
 
 allow_specific_designation_only(["TEACHER", "DEVELOPER", "STUDENT"]);
+allow_if_class_section_id_isset();
 if(isset($_SESSION['class_id'])){
     $class_id = $_SESSION['class_id'];
 }

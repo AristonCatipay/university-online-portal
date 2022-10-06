@@ -132,24 +132,6 @@ if (isset($_POST["submit-class-id"])) {
                                 </form>
                             </div>
 
-                <!-- <div class="justify-content-between flex-column h-100">
-                    <a href="<= $row->fb_link ?>" target="<= $row->section_id?>">
-                    <i class="fa-brands fa-facebook"></i>
-                    </a>
-
-                    <a href="<= $row->insta_link ?>" target="<= $row->insta_link ?>">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-
-                    <a href="<= $row->web_link ?>" target="<= $row->web_link ?>">
-                        <i class="fa-solid fa-globe"></i>
-                    </a>
-
-                    <a href target>
-                        <i class="fa-brands fa-twitter"></i>
-                    </a>
-                </div> -->
-
         <div class="logo">
         <img class="img-fluid" src ="<?= "../../Assets/img/profiles/".$row->profile_file_name; ?>"  style="float: right; height: 100px; width: 100px; border-radius: 50%; border: 2px solid #D4AF37; margin-top: 15px;">
         </a>    

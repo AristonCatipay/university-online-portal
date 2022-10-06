@@ -275,6 +275,8 @@
         unset($_SESSION['logged_in_profile_file_name']);
         unset($_SESSION['logged_in_user_type']);
         unset($_SESSION['logged_in_password']);
+        unset($_SESSION['class_id']);
+        unset($_SESSION['section_id']);
         header('Location: ' . $redirect_path);
     }
 
@@ -297,6 +299,13 @@
     function allow_all_fully_authenticated(){
         if(!isset($_SESSION['logged_in_id']) || empty($_SESSION['logged_in_password']) 
         || empty($_SESSION['logged_in_date_activated'])){
+            unset_logged_in_session();
+        } 
+    }
+
+    function allow_if_class_section_id_isset(){
+        allow_all_fully_authenticated();
+        if(!isset($_SESSION['class_id']) || !isset($_SESSION['section_id'])){
             unset_logged_in_session();
         } 
     }

@@ -8,6 +8,8 @@ setTitle("Class Announcements");
 $db = new Database();
 $table_name = "Class Announcements";
 
+allow_specific_designation_only(["TEACHER", "DEVELOPER"]);
+
 // Add your filter functionality here.
 // $filter = null;
 // if (isset($_GET["selected"])) {

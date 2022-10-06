@@ -7,6 +7,7 @@ setTitle("User Accounts");
 $db = new Database();
 $table_name = "User Accounts";
 
+allow_specific_designation_only(["DEVELOPER"]);
 
 $filter_designation = null;
 if (isset($_GET["selected_designation"])) {

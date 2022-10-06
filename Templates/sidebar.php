@@ -44,8 +44,32 @@
                             "users" => array("path" => "users", "icon" => "fa-solid fa-users"),
                             "classes" => array("path" => "classes", "icon" => "fa-solid fa-users-rectangle"),
                             "card classes" => array("path" => "card-classes", "icon" => "fa-solid fa-chalkboard-user"),
-                            "classes post" => array("path" => "card-class-post", "icon" => "fa-solid fa-chalkboard-user"),
                         );
+                        if(($_SESSION['logged_in_user_designation'] == "STUDENT")){
+                            $nav_links_icons = array(
+                                // "" => array("path" => "", "icon" => ""),
+                                "profile" => array("path" => "profile", "icon" => "fa-solid fa-user"),
+                                "card classes" => array("path" => "card-classes", "icon" => "fa-solid fa-chalkboard-user"),
+                            );
+                        }
+                        if(($_SESSION['logged_in_user_designation'] == "TEACHER")){
+                            $nav_links_icons = array(
+                                // "" => array("path" => "", "icon" => ""),
+                                "profile" => array("path" => "profile", "icon" => "fa-solid fa-user"),
+                                "classes" => array("path" => "classes", "icon" => "fa-solid fa-users-rectangle"),
+                                "card classes" => array("path" => "card-classes", "icon" => "fa-solid fa-chalkboard-user"),
+                            );
+                        }
+                        if(($_SESSION['logged_in_user_designation'] == "DEVELOPER")){
+                            $nav_links_icons = array(
+                                // "" => array("path" => "", "icon" => ""),
+                                "dashboard" => array("path" => "dashboard", "icon" => "fa-solid fa-table-columns"),
+                                "profile" => array("path" => "profile", "icon" => "fa-solid fa-user"),
+                                "users" => array("path" => "users", "icon" => "fa-solid fa-users"),
+                                "classes" => array("path" => "classes", "icon" => "fa-solid fa-users-rectangle"),
+                                "card classes" => array("path" => "card-classes", "icon" => "fa-solid fa-chalkboard-user"),
+                            );
+                        }
                     }
                     ?>
 
