@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2022 at 12:44 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.30
+-- Generation Time: Oct 06, 2022 at 08:05 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -75,7 +75,7 @@ CREATE TABLE `class_announcement` (
 --
 
 INSERT INTO `class_announcement` (`id`, `teacher_id`, `section_id`, `content`, `timestamp`) VALUES
-(1, '2022-H50T9', '2022-AAAAA', 'This is just a test', '2022-09-24 09:41:48');
+(14, '2022-H50T9', '2022-ABCDE', 'This is the test announcement', '2022-09-24 17:46:01');
 
 -- --------------------------------------------------------
 
@@ -147,8 +147,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `designation_id`, `user_type_id`, `date_activated`, `password`, `first_name`, `middle_name`, `last_name`, `profile_file_name`, `birthday`, `gender`, `email`, `contact_no`) VALUES
-('2022-ABC', 4, 3, '2022-08-04', '$2y$10$er6HROiDqrhvtCmE0EYyF.WXxa8HGmQhUpkULNPAFaEEd9MocKDtW', 'Ariston', 'Lambayan', 'Catipay', '2022-ABC=1660140902.jpg', '2001-03-30', 'male', 'aristoncatipay123@gmail.com', '09389036383'),
-('2022-H50T9', 2, 2, '2022-09-23', '$2y$10$MKeqKi20NFp/QeUY5tSjTOBr1cwXO/c5wzrdgQizk3pMQQEFjof.q', 'Ramil', 'H.', 'Huele', '2022-H50T9.png', '2022-09-23', 'male', 'ramil.huele@gmail.com', '0926546135');
+('2022-ABC', 1, 2, '2022-08-04', '$2y$10$er6HROiDqrhvtCmE0EYyF.WXxa8HGmQhUpkULNPAFaEEd9MocKDtW', 'Ariston', 'Lambayan', 'Catipay', '2022-ABC=1660140902.jpg', '2001-03-30', 'male', 'aristoncatipay123@gmail.com', '09389036383'),
+('2022-H50T9', 2, 2, '2022-09-23', '$2y$10$MKeqKi20NFp/QeUY5tSjTOBr1cwXO/c5wzrdgQizk3pMQQEFjof.q', 'Ramil', 'H.', 'Huele', '2022-H50T9.png', '2022-09-23', 'male', 'ramil.huele@gmail.com', '0926546135'),
+('2022-LWSTJ', 4, 3, '2022-10-07', '$2y$10$Zz.DCoF7YLPfUmTKLejpdOc2c/pk6DqIIxr4paGVRHZs2TvRHIDXS', 'John ', 'Michael', 'Doe', '2022-LWSTJ.jpg', '2022-10-11', 'male', 'john.michael.doe@gmail.com', '09245668756');
 
 -- --------------------------------------------------------
 
@@ -263,7 +264,7 @@ ALTER TABLE `audit_logs`
 -- AUTO_INCREMENT for table `class_announcement`
 --
 ALTER TABLE `class_announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `dashboard_cards`
